@@ -6,6 +6,7 @@ By default only the circuit breaker annotation is enabled. But one has to write 
 related configuration for eureka, zipkin, spring boot admin one has two options:
 
 1) When generating from UI one has to provide vendor extensions inside the swagger specification as below:
+```
 swagger: "2.0"
 info:
   description: "This is a sample Product Catalogue Server.\
@@ -17,7 +18,7 @@ info:
     zipkinUri: "http://localhost:9411"
     springBootAdminUri: "http://localhost:8000"
     pkmstInterceptor: "true"
-    
+```    
 PLease note the vendor extensions are inside the info tag of the swagger specification. All the tags are case sensitive. Once given all the related configuration and the dependency 
 will be enabled.
 
