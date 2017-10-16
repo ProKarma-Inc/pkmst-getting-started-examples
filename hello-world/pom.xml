@@ -12,7 +12,7 @@
       <groupId>com.prokarma</groupId>
       <artifactId>pkmst-samples</artifactId>
       <version>0.0.1-SNAPSHOT</version>
-      <!-- <relativePath>../pkmst-samples</relativePath> -->
+      
       <!-- lookup parent from repository -->
    </parent>
    <dependencies>
