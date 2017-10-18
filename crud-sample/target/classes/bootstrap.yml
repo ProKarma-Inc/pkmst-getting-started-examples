@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: crud-sample
+  profiles:
+    active: local
+  thymeleaf:
+    cache: false
+    prefix: classpath:/pages/
