@@ -267,5 +267,6 @@
   	<module>hello-world</module>
 	 <module>hello-sample</module> 
 	  <module>crud-sample</module>
+	   <module>mongodb-sample</module>
   </modules>
 </project>
