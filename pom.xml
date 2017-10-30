@@ -271,5 +271,6 @@
 	  <module>pkmst-security-sample</module>
 	  <module>data-sample</module>
 	  <module>pkmst-mongo-sample</module>
+	  <module>pkmst-hello-sample</module>
   </modules>
 </project>
