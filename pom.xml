@@ -270,5 +270,6 @@
 	   <module>mongodb-sample</module>
 	  <module>pkmst-security-sample</module>
 	  <module>data-sample</module>
+	  <module>pkmst-mongo-sample</module>
   </modules>
 </project>
