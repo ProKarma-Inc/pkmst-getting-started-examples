@@ -268,5 +268,6 @@
 	 <module>hello-sample</module> 
 	  <module>crud-sample</module>
 	   <module>mongodb-sample</module>
+	  <module>pkmst-security-sample</module>
   </modules>
 </project>
