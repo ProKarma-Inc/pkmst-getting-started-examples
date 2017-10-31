@@ -1,22 +1,27 @@
-This is the sample Spring boot microservice template project generated from swagger codegen.Using swagger specification you can convert any definition to spring boot microservice.It has the integration with the below services:
- circuit breaker. For testing we have placeholders for junit test class, integration test class, cucumber sample 
-feature file(implement according to your needs), gatling load test.
+Microservices with Spring Boot with Security
 
-The project has three profiles local, dev, dev-config which can be configured accordingly.
-Ways to run the project:
-1) Normal spring boot application
-2) Using Dockerfile to run in the container
+This is the sample Spring boot microservice template project generated from swagger codegen. Using swagger specification you can convert any definition to spring boot microservice. This project takes in the username and password and authorizes and authenticates them. Users logged in can only edit or delete their information 
 
-Use manifest.yml file to push the application to the cloud.
+Prerequisites
+- Maven 3.x
 
-HttpLogging filter is provided for logging in the request and response. Can be found inside the com.prokarma.pkmst.logging package.
-Spring security is also provided to secure the resources. Please modify according to your needs.
+- Java 1.7
 
- Running the application:
-1) Import the project in to the eclipse. Run the app as an spring boot application.The project will run on http://localhost:8008   OR
-2) Clone the repository onto your local and get into the folder with the command cd pkmst-security-sample 
-             a) Run with the command mvn clean install , for including all the dependencies
-             b) After you see that the build is successfull , then run the command mvn spring-boot:run for running your application at http://localhost:8008
-             
-3) sSwagger ui available on:
+- Git
+
+Installation
+
+1.Clone this repository
+https://github.com/ProKarma-Inc/pkmst-getting-started-examples.git
+Now from your environment and run the application with the following commands
+
+$ cd pkmst-security-sample
+
+$ mvn clean install
+
+$ mvn spring-boot:run
+
+2.  Import the project in to the eclipse. Run the app as a spring boot application. The project will run on http://localhost:8008  
+
+3) Swagger ui available on:
 http://localhost:8008/swagger-ui.html
