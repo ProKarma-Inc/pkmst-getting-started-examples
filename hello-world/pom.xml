@@ -136,31 +136,7 @@
                      </reportPlugins>
                   </configuration>
                </plugin>
-               <!--enable for deploying to nexus -->
-               <!--<plugin>
-						<groupId>org.sonatype.plugins</groupId>
-						<artifactId>nexus-staging-maven-plugin</artifactId>
-						<version>1.5.1</version>
-						<executions>
-							<execution>
-								<id>default-deploy</id>
-								<phase>deploy</phase>
-								<goals>
-									<goal>deploy</goal>
-								</goals>
-							</execution>
-						</executions>
-						<configuration>
-							<serverId>nexus</serverId>
-							<nexusUrl>http://mdt-jenkins.prokarmalabs.com:8081/nexus/</nexusUrl>
-							<skipStaging>true</skipStaging>
-						</configuration>
-					</plugin>-->
-               <!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-failsafe-plugin</artifactId>
-				<version>2.12</version> <executions> <execution> <id>integration-test</id>
-				<goals> <goal>integration-test</goal> </goals> </execution> <execution> <id>verify</id>
-				<goals> <goal>verify</goal> </goals> </execution> </executions> </plugin> -->
-            </plugins>
+               </plugins>
          </build>
       </profile>
       <profile>
@@ -217,17 +193,4 @@
          </plugins>
       </pluginManagement>
    </build>
-   <!-- enable for nexus-->
-   <!--<distributionManagement>
-		<snapshotRepository>
-			<id>nexus</id>
-			<name>Internal Snapshots</name>
-			<url>http://mdt-jenkins.prokarmalabs.com:8081/repository/maven-snapshots</url>
-		</snapshotRepository>
-		<repository>
-			<id>nexus</id>
-			<name>Internal Releases</name>
-			<url>http://mdt-jenkins.prokarmalabs.com:8081/repository/maven-releases/</url>
-		</repository>
-	</distributionManagement>-->
 </project>
