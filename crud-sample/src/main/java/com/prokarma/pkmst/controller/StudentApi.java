@@ -32,9 +32,9 @@ import com.prokarma.pkmst.model.Student;
 @Api(value = "student", description = "the Student API")
 public interface StudentApi {
 
-	@ApiOperation(value = "Get Strudent info", notes = "Retrvies student information.", response = Student.class, tags = { "student", })
+	@ApiOperation(value = "Get Student info", notes = "Retrvies student information.", response = Student.class, tags = { "student", })
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "successful operation") })
-	@RequestMapping(method = RequestMethod.GET, value = "/student/{id}")
+	@RequestMapping(method = RequestMethod.GET, value = "/students/{id}")
 	public ResponseEntity<Student> studentInfo(
 			@ApiParam(value = "Get Student information", required = true) @PathVariable Long id,
 			@RequestHeader(value = "Accept", required = false) String accept)
@@ -44,7 +44,7 @@ public interface StudentApi {
 	@ApiOperation(value = "Create Student", notes = "Create student information", response = String.class, tags={ "student", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "successful operation") })
-    @RequestMapping(value = "/createStudent",
+    @RequestMapping(value = "/students",
         consumes = { "application/json" }, 
         method = RequestMethod.POST)
 	ResponseEntity<String> createStudent(@ApiParam(value = "Created Student object" ,required=true )   @RequestBody Student body, @RequestHeader(value = "Accept", required = false) String accept) throws Exception;
@@ -53,23 +53,23 @@ public interface StudentApi {
 	@ApiOperation(value = "Update Student", notes = "Update student information", response = String.class, tags={ "student", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "successful operation") })
-    @RequestMapping(value = "/updateStudent",
+    @RequestMapping(value = "/students",
         consumes = { "application/json" }, 
-        method = RequestMethod.POST)
+        method = RequestMethod.PUT)
 	ResponseEntity<String> updateStudent(@ApiParam(value = "Update Student object" ,required=true )   @RequestBody Student body, @RequestHeader(value = "Accept", required = false) String accept) throws Exception;
 	
 	
 	@ApiOperation(value = "All Students Info", notes = "Shows all Students information", response = List.class, tags={ "student", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "successful operation") })
-    @RequestMapping(value = "/allStudents",
+    @RequestMapping(value = "/students",
         produces = { "application/json" }, 
-        method = RequestMethod.POST)
+        method = RequestMethod.GET)
 	ResponseEntity<List<Student>> allStudents() throws Exception;
 	
-	@ApiOperation(value = "Delete Strudent info", notes = "Deletes student information.", response = Student.class, tags = { "student", })
+	@ApiOperation(value = "Delete Student info", notes = "Deletes student information.", response = Student.class, tags = { "student", })
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "successful operation") })
-	@RequestMapping(method = RequestMethod.GET, value = "/deleteStudent/{id}")
+	@RequestMapping(method = RequestMethod.DELETE, value = "/students/{id}")
 	public ResponseEntity<String> deleteStudent(
 			@ApiParam(value = "Deleted Student information", required = true) @PathVariable Long id,
 			@RequestHeader(value = "Accept", required = false) String accept)

@@ -36,7 +36,7 @@ public class StudentApiController implements StudentApi {
     @Autowired
 	private StudentRepository studentRepository;
     
-    @RequestMapping(method=RequestMethod.GET, value="/student/{id}")
+    
     public ResponseEntity<Student> studentInfo(@ApiParam(value = "Get Student information",required=true ) @PathVariable Long id,
             @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
 		Student student = this.studentRepository.findOne(id);
@@ -59,7 +59,7 @@ public class StudentApiController implements StudentApi {
     	return new ResponseEntity<>("Modified Student Information Successfully",HttpStatus.OK);
     }
     
-    @RequestMapping(method=RequestMethod.GET, value="/deleteStudent/{id}")
+    
     public ResponseEntity<String> deleteStudent(@ApiParam(value = "Delete Student information",required=true ) @PathVariable Long id,
             @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
 		this.studentRepository.delete(id);
