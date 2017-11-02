@@ -46,7 +46,7 @@ public class StudentApiController implements StudentApi {
     public ResponseEntity<String> createStudent(@ApiParam(value = "Created Student object" ,required=true )   @RequestBody Student student,
             @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
     	this.studentRepository.save(student);
-    	return new ResponseEntity<>("Student Registered Successfully",HttpStatus.OK);
+    	return new ResponseEntity<>("Student Registered Successfully",HttpStatus.CREATED);
     }
     
     public ResponseEntity<List<Student>> allStudents() throws Exception {    	

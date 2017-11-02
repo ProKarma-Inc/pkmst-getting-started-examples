@@ -1,17 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-   <modelVersion>4.0.0</modelVersion>
-   <groupId>com.prokarma</groupId>
-   <artifactId>crud-sample</artifactId>
-   <version>1.0.0</version>
-   <packaging>jar</packaging>
-   <name>crud-sample</name>
-   <description>Demo project for Spring Boot Microservices</description>
-   <parent>
-      <groupId>com.prokarma</groupId>
-      <artifactId>pkmst-samples</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
- </parent>
-   
- </project>  
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.prokarma</groupId>
+	<artifactId>crud-sample</artifactId>
+	<version>1.0.0</version>
+	<packaging>jar</packaging>
+	<name>crud-sample</name>
+	<description>Demo project for Spring Boot Microservices</description>
+	<properties>
+		<maven-failsafe>2.20.1</maven-failsafe>
+	</properties>
+	<parent>
+		<groupId>com.prokarma</groupId>
+		<artifactId>pkmst-samples</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>${maven-failsafe}</version>
+				<configuration>
+					<includes>
+						<include>**/*IT.java</include>
+					</includes>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>  
    
