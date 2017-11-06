@@ -13,112 +13,102 @@
 
 package com.prokarma.pkmst.controller;
 
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.util.Iterator;
+import java.util.List;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.prokarma.pkmst.model.Car;
-import java.util.List;
-import org.junit.Test;
-import org.junit.Ignore;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.multipart.MultipartFile;
+import com.prokarma.pkmst.model.CarRepository;
 
 /**
  * API tests for CarApi
  */
-@Ignore
 public class CarApiTest {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
+    @InjectMocks
     private final CarApi api = new CarApiController(objectMapper);
+    
+    private CarRepository carRepository;
 
     private final String accept = "application/json";
-
     
-    /**
-     * Create Car
-     *
-     * 
-     *
-     * @throws Exception
-     *          if the Api call fails
-     */
+    @Before
+    public void setUp() {
+    	carRepository = mock(CarRepository.class);
+        MockitoAnnotations.initMocks(this);
+        
+    }
+
     @Test
     public void createCarTest() throws Exception {
-        Car body = null;
-    ResponseEntity<Void> response = api.createCar(body , accept);
+        Car body = mock(Car.class);
+        api.createCar(body , accept);
+        verify(carRepository).save(any(Car.class));
 
-        // TODO: test validations
     }
     
-    /**
-     * Creates list of cars with given input array
-     *
-     * 
-     *
-     * @throws Exception
-     *          if the Api call fails
-     */
     @Test
     public void createCarsWithArrayInputTest() throws Exception {
-        List<Car> body = null;
-    ResponseEntity<Void> response = api.createCarsWithArrayInput(body , accept);
+    	Car newCar = mock(Car.class);
+    	Iterator<Car> itr = mock(Iterator.class);
+        when(itr.next()).thenReturn(newCar);
+        when(itr.hasNext()).thenReturn(true, false);
+          
 
-        // TODO: test validations
+        List<Car> mockCarsList = Mockito.mock(List.class);
+        when(mockCarsList.iterator()).thenReturn(itr);
+        api.createCarsWithArrayInput(mockCarsList , accept);
+        verify(carRepository).save(any(Car.class));
+
     }
     
-    /**
-     * Delete car
-     *
-     * 
-     *
-     * @throws Exception
-     *          if the Api call fails
-     */
     @Test
     public void deleteCarTest() throws Exception {
-        String vinNumber = null;
-    ResponseEntity<Void> response = api.deleteCar(vinNumber , accept);
+    	String vinNumber = "v101";
+    	Car deleteCar = mock(Car.class);
+    	when(deleteCar.getId()).thenReturn(101L);
+    	when(carRepository.findByVinNumber(vinNumber)).thenReturn(deleteCar);
+    	
+        api.deleteCar(vinNumber , accept);
+        verify(carRepository).delete(any(Long.class));
 
-        // TODO: test validations
     }
     
-    /**
-     * Get car by vin number
-     *
-     * 
-     *
-     * @throws Exception
-     *          if the Api call fails
-     */
     @Test
     public void getCarByVinNumberTest() throws Exception {
-        String vinNumber = null;
-    ResponseEntity<Car> response = api.getCarByVinNumber(vinNumber , accept);
-
-        // TODO: test validations
+        String vinNumber = "v101";
+        Car carInfo = mock(Car.class);
+        when(carInfo.getId()).thenReturn(101L);
+    	when(carRepository.findByVinNumber(vinNumber)).thenReturn(carInfo);
+    	api.getCarByVinNumber(vinNumber , accept);
+    	verify(carRepository).findByVinNumber(any(String.class));
     }
     
-    /**
-     * Updated car
-     *
-     * 
-     *
-     * @throws Exception
-     *          if the Api call fails
-     */
     @Test
     public void updateCarTest() throws Exception {
-        String vinNumber = null;
-        Car body = null;
-    ResponseEntity<Void> response = api.updateCar(vinNumber, body , accept);
-
-        // TODO: test validations
+    	String vinNumber = "v101";
+    	Car updateCarInfo = mock(Car.class);
+        api.updateCar(vinNumber, updateCarInfo , accept);
+        verify(carRepository).save(any(Car.class)); 
+    }
+    
+    @Test
+    public void allCarsTest() throws Exception {
+    	api.allCars(accept);
+        verify(carRepository).findAll(); 
     }
     
 }

@@ -1,4 +1,7 @@
 package com.prokarma.pkmst.controller;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.json.JSONException;
 import org.junit.Assert;
 import org.junit.Test;
@@ -57,6 +60,53 @@ public class PkmstIT {
 	}
 	
 	@Test
+	public void testCreateUsersWithArrayInput() throws JSONException {
+		
+		HttpEntity<String> entity = new HttpEntity<String>(null, headers);
+
+		restTemplate.exchange(
+				createURLWithPort("/user/login?username=user&password=user"),
+				HttpMethod.GET, entity, String.class);
+		User newUser =  new User("testuser", "testuser", "USER");
+		
+		headers.add("Content-Type", "application/json");
+		
+		List<User> usersList = new ArrayList<User>();
+		usersList.add(newUser);
+		headers.add("Content-Type", "application/json");
+		HttpEntity<List<User>> createEntity = new HttpEntity<List<User>>(usersList, headers);
+		
+		ResponseEntity<String> response = restTemplate.exchange(
+				createURLWithPort("/user/createWithArray"),
+				HttpMethod.POST, createEntity, String.class);
+		Assert.assertEquals("User(s) registered with the system", response.getBody());
+	}
+	
+	@Test
+	public void testCreateUsersWithListInput() throws JSONException {
+		
+		HttpEntity<String> entity = new HttpEntity<String>(null, headers);
+
+		restTemplate.exchange(
+				createURLWithPort("/user/login?username=user&password=user"),
+				HttpMethod.GET, entity, String.class);
+		User newUser =  new User("testuser", "testuser", "USER");
+		
+		headers.add("Content-Type", "application/json");
+		
+		List<User> usersList = new ArrayList<User>();
+		usersList.add(newUser);
+		headers.add("Content-Type", "application/json");
+		HttpEntity<List<User>> createEntity = new HttpEntity<List<User>>(usersList, headers);
+		
+		ResponseEntity<String> response = restTemplate.exchange(
+				createURLWithPort("/user/createWithList"),
+				HttpMethod.POST, createEntity, String.class);
+		Assert.assertEquals("User(s) registered with the system", response.getBody());
+	}
+	
+	
+	@Test
 	public void testGetUserbyName() throws JSONException {
 
 		HttpEntity<String> entity = new HttpEntity<String>(null, headers);
@@ -70,6 +120,51 @@ public class PkmstIT {
 				HttpMethod.GET, entity, User.class);
 		Assert.assertNotNull(response.getBody());
 		Assert.assertEquals("user", response.getBody().getUsername());
+	}
+	
+	@Test
+	public void testDeleteUser() throws JSONException {
+
+		HttpEntity<String> entity = new HttpEntity<String>(null, headers);
+		
+		restTemplate.exchange(
+				createURLWithPort("/user/login?username=user&password=user"),
+				HttpMethod.GET, entity, String.class);
+
+		ResponseEntity<String> response = restTemplate.exchange(
+				createURLWithPort("/user/user"),
+				HttpMethod.DELETE, entity, String.class);
+		Assert.assertEquals("user deleted successfully from the system", response.getBody());
+	}
+	
+	@Test
+	public void testUpdateUser() throws JSONException {
+
+		HttpEntity<String> entity = new HttpEntity<String>(null, headers);
+		
+		restTemplate.exchange(
+				createURLWithPort("/user/login?username=user&password=user"),
+				HttpMethod.GET, entity, String.class);
+
+		User newUser =  new User("testuser", "testuser1", "USER");
+		headers.add("Content-Type", "application/json");
+		HttpEntity<User> createEntity = new HttpEntity<User>(newUser, headers);
+		
+		ResponseEntity<String> response = restTemplate.exchange(
+				createURLWithPort("/user/testuser"),
+				HttpMethod.PUT, createEntity, String.class);
+		Assert.assertEquals("User information modified successfully.", response.getBody());
+	}
+	
+	@Test
+	public void testLogout() throws JSONException {
+
+		HttpEntity<String> entity = new HttpEntity<String>(null, headers);
+
+		ResponseEntity<String> response = restTemplate.exchange(
+				createURLWithPort("/user/logout"),
+				HttpMethod.GET, entity, String.class);
+		Assert.assertEquals("Logged out successfully", response.getBody());
 	}
 
 	private String createURLWithPort(String uri) {
