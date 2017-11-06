@@ -1,4 +1,5 @@
 package com.prokarma.pkmst.controller;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.context.embedded.LocalServerPort;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
+
 import com.prokarma.pkmst.PkmstApplication;
 
 @RunWith(SpringRunner.class)
@@ -23,9 +25,15 @@ public class PkmstIT {
 	HttpHeaders headers = new HttpHeaders();
 
 	@Test
-	public void testRetrieveStudentCourse() {
+	public void testGreetMessage() {
+		
+		HttpEntity<String> entity = new HttpEntity<String>(null, headers);
 
-		//add your logic
+		ResponseEntity<String> response = restTemplate.exchange(
+				createURLWithPort("/hello/TestUser"),
+				HttpMethod.GET, entity, String.class);		
+		Assert.assertEquals("Hello Welcome : TestUser", response.getBody());
+
 	}
 
 	private String createURLWithPort(String uri) {

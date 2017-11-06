@@ -13,17 +13,13 @@
 
 package com.prokarma.pkmst.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Test;
+import org.junit.Assert;
 import org.junit.Ignore;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import org.junit.Test;
+import org.mockito.InjectMocks;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * API tests for HelloApi
@@ -33,25 +29,16 @@ public class HelloApiTest {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
+    @InjectMocks
     private final HelloApi api = new HelloApiController(objectMapper);
 
     private final String accept = "application/json";
 
     
-    /**
-     * Get employee by emp number
-     *
-     * 
-     *
-     * @throws Exception
-     *          if the Api call fails
-     */
     @Test
-    public void getEmployeeByEmpNumberTest() throws Exception {
-        String greetMessage = null;
-    ResponseEntity<String> response = api.greetMessage(greetMessage , accept);
-
-        // TODO: test validations
+    public void createCarTest() throws Exception {
+        ResponseEntity<String> response = api.greetMessage("TestUser" , accept);
+        Assert.assertNotNull(response.getBody());
     }
     
 }
