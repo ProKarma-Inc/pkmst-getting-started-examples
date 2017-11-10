@@ -10,5 +10,5 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(format = { "pretty", "html:target/cucumber-html-report",
  "json:./report/user-report-json/user.json",
  })
-public class PkmstTest {
+public class UserTest {
 }

@@ -44,12 +44,8 @@ public class UserApiController implements UserApi {
         @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
         
     	String message;
-    	if(!loggedInUser) {
-    		message = "You are not authorised user to add a user to the system. Please check with your adminstrator!";
-    	} else {
-    		repository.save(body);
-    		message = body.getUsername() + "user registered with the system";
-    	}
+    	repository.save(body);
+		message = body.getUsername() + "user registered with the system";
 
         if (accept != null && accept.contains("application/json")) {
         	return new ResponseEntity<String>(message,HttpStatus.OK);
@@ -61,14 +57,11 @@ public class UserApiController implements UserApi {
     public ResponseEntity<String> createUsersWithArrayInput(@ApiParam(value = "List of user object" ,required=true )   @RequestBody List<User> body,
         @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
     	String message;
-    	if(!loggedInUser) {
-    		message = "You are not authorised user to add user(s) to the system. Please check with your adminstrator!";
-    	} else {
-    		for (User user : body) {
-    			repository.save(user);
-			}    		
-    		message = "User(s) registered with the system";
-    	}
+    	for (User user : body) {
+			repository.save(user);
+		}    		
+		message = "User(s) registered with the system";
+		
         if (accept != null && accept.contains("application/json")) {
         	return new ResponseEntity<String>(message,HttpStatus.OK);
         }
@@ -79,14 +72,10 @@ public class UserApiController implements UserApi {
     public ResponseEntity<String> createUsersWithListInput(@ApiParam(value = "List of user object" ,required=true )   @RequestBody List<User> body,
         @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
     	String message;
-    	if(!loggedInUser) {
-    		message = "You are not authorised user to add user(s) to the system. Please check with your adminstrator!";
-    	} else {
-    		for (User user : body) {
-    			repository.save(user);
-			}    		
-    		message = "User(s) registered with the system";
-    	}
+    	for (User user : body) {
+			repository.save(user);
+		}    		
+		message = "User(s) registered with the system";
         if (accept != null && accept.contains("application/json")) {
         	return new ResponseEntity<String>(message,HttpStatus.OK);
         }
@@ -97,12 +86,8 @@ public class UserApiController implements UserApi {
     public ResponseEntity<String> deleteUser(@ApiParam(value = "The name that needs to be deleted",required=true ) @PathVariable("username") String username,
         @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
     	String message;
-    	if(!loggedInUser) {
-    		message = "You are not authorised user to add a user to the system. Please check with your adminstrator!";
-    	} else {
-    		repository.delete(repository.findByUsername(username).getId());
-    		message = username + " deleted successfully from the system";
-    	}
+    	repository.delete(repository.findByUsername(username).getId());
+		message = username + " deleted successfully from the system";
 
         if (accept != null && accept.contains("application/json")) {
         	return new ResponseEntity<String>(message,HttpStatus.OK);
@@ -112,12 +97,7 @@ public class UserApiController implements UserApi {
 
     public ResponseEntity<User> getUserByName(@ApiParam(value = "The name that needs to be fetched. Use user for testing. ",required=true ) @PathVariable("username") String username,
         @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
-        // do some magic!
 
-    	String message;
-    	if(!loggedInUser) {
-    		return new ResponseEntity<User>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
-    	}
     	if (accept != null && accept.contains("application/json")) {
             return new ResponseEntity<User>(repository.findByUsername(username), HttpStatus.OK);
         }
@@ -163,12 +143,8 @@ public class UserApiController implements UserApi {
         @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
     	
     	String message;
-    	if(!loggedInUser) {
-    		message = "You are not authorised for this operation to do. Please check with your adminstrator!";
-    	}  else {
-    		repository.save(body);
-    		message = "User information modified successfully.";
-    	}
+    	repository.save(body);
+		message = "User information modified successfully.";
 
         if (accept != null && accept.contains("application/json")) {
             return new ResponseEntity<String>(message, HttpStatus.OK);

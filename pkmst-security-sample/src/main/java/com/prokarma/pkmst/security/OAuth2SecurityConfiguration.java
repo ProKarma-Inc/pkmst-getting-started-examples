@@ -33,8 +33,8 @@ public class OAuth2SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-        .withUser("admin").password("admin@123").roles("ADMIN").and()
-        .withUser("user").password("user@123").roles("USER");
+        .withUser("admin").password("admin").roles("ADMIN").and()
+        .withUser("user").password("user").roles("USER");
     }
 
     @Override
