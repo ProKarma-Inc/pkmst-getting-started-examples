@@ -31,7 +31,7 @@ public class HelloWorldSteps {
 		wireMockServer.start();
 		WireMock.configureFor("localhost", PORT);
 		WireMock.stubFor(
-				WireMock.get(WireMock.urlEqualTo("/user/sayHello")).willReturn(WireMock.aResponse().withStatus(200)));
+				WireMock.get(WireMock.urlEqualTo("/sayHello")).willReturn(WireMock.aResponse().withStatus(200)));
 
 	}
 
@@ -43,7 +43,7 @@ public class HelloWorldSteps {
 	@Then("^response status code for sayHello should be \"([^\"]*)\"$")
 	public void response_status_code_for_sayHello_should_be(String arg1) throws Throwable {
 		CloseableHttpClient httpClient = HttpClients.createDefault();
-		HttpGet request = new HttpGet(URL + "/user/sayHello");
+		HttpGet request = new HttpGet(URL + "/sayHello");
 		HttpResponse response = httpClient.execute(request);
 
 		// Status code
@@ -54,7 +54,7 @@ public class HelloWorldSteps {
 	public static void setUpScenario2() {
 		wireMockServer.start();
 		WireMock.configureFor("localhost", PORT);
-		WireMock.stubFor(WireMock.get(WireMock.urlEqualTo("/user/hello"))
+		WireMock.stubFor(WireMock.get(WireMock.urlEqualTo("/hello"))
 				.willReturn(WireMock.aResponse().withStatus(200).withBody("{\"name\":\"TestUser\"}")));
 	}
 
@@ -66,7 +66,7 @@ public class HelloWorldSteps {
 	@Then("^response status code for hello should be \"([^\"]*)\"$")
 	public void response_status_code_for_hello_should_be(String arg1) throws Throwable {
 		CloseableHttpClient httpClient = HttpClients.createDefault();
-		HttpGet request = new HttpGet(URL + "/user/hello");
+		HttpGet request = new HttpGet(URL + "/hello");
 		HttpResponse response = httpClient.execute(request);
 
 		// Status code
