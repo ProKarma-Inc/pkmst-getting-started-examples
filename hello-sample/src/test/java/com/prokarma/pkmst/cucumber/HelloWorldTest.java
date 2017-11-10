@@ -12,5 +12,5 @@ import cucumber.api.junit.Cucumber;
  "json:./report/store-report-json/store.json",
  "json:./report/user-report-json/user.json",
  })
-public class PkmstTest {
+public class HelloWorldTest {
 }
