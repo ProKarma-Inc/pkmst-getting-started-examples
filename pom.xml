@@ -261,5 +261,6 @@
 		<module>data-sample</module>
 		<module>pkmst-mongo-sample</module>
 		<module>pkmst-hello-sample</module>
+		<module>pkmst-middleware-example</module>
 	</modules>
 </project>
