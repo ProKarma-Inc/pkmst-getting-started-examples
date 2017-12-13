@@ -2,21 +2,34 @@ This is the sample Spring boot microservice template project generated from swag
  circuit breaker. For testing we have placeholders for junit test class, integration test class, cucumber sample 
 feature file(implement according to your needs), gatling load test.
 
-The project has three profiles local, dev, dev-config which can be configured accordingly.
-Ways to run the project:
-1) Normal spring boot application
-2) Using Dockerfile to run in the container
+Prerequisites
 
-Use manifest.yml file to push the application to the cloud.
+- Maven 3.x
+- Java 1.7
+- Git
 
-HttpLogging filter is provided for logging in the request and response. Can be found inside the com.prokarma.pkmst.logging package.
-Spring security is also provided to secure the resources. Please modify according to your needs.
+Installation
 
-First run:
-Import the project in to the eclipse. Run the app as an spring boot application.The project will run on 
-1. http://localhost:8008/sayHello
-	Now you will see "Hello! welcome World"
-2. http://localhost:8008/hello/prok
-	Now you will see "Hello! welcome prok"
-3. http://localhost:8008/sayHello?name=testuser
-	Now you will see "Hello! welcome testuser"
+1.Clone this repository
+https://github.com/ProKarma-Inc/pkmst-getting-started-examples.git
+
+Now from your environment and run the application with the following commands
+
+$ cd hello-sample
+
+$ mvn clean install
+
+$ mvn spring-boot:run
+
+2)  Import the project in to the eclipse. Run the app as an spring boot application.The project will run on  http://localhost:8008. The options to be tried in the localhost are:
+
+        a) http://localhost:8008/sayHello
+	               Now you will see "Hello! welcome World"
+        b) http://localhost:8008/hello/prok
+	              Now you will see "Hello! welcome prok"
+        c) http://localhost:8008/sayHello?name=testuser
+	             Now you will see "Hello! welcome testuser"
+
+3) Swagger ui available on:
+http://localhost:8008/swagger-ui.html
+
