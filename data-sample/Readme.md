@@ -2,7 +2,7 @@ Microservices with Spring Boot and JPA repository
 
 This is the sample Spring boot microservice template project generated from swagger codegen.Using swagger specification you can convert any definition to spring boot microservice.It has the integration with the below services:
  circuit breaker. For testing we have placeholders for junit test class, integration test class, cucumber sample 
-feature file(implement according to your needs), gatling load test.
+feature file(implement according to your needs), gatling load test.This project allows us to perform CRUD operations on details of a car, which can be seen in the swagger ui given below
 
 Prerequisites
 
