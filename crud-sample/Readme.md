@@ -13,7 +13,7 @@ https://github.com/ProKarma-Inc/pkmst-getting-started-examples.git
 
 Now from your environment and run the application with the following commands
 
-$ cd pkmst-mongo-sample
+$ cd crud-sample
 
 $ mvn clean install
 
