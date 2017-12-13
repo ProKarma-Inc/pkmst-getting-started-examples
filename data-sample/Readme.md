@@ -30,7 +30,7 @@ http://localhost:8008/swagger-ui.html
 
 You should be adding this to your pom , if using JPA in your project:
 
-<dependency>
-			<groupId>org.springframework.boot</groupId>
+                <dependency>
+		        <groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
-</dependency>
+                </dependency>
