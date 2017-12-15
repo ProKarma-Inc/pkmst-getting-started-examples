@@ -21,17 +21,11 @@ Feature: Product Service API
     
  @scenario-4
   Scenario:
-    Given I query to delete car "/car/{vinNumber}" 
-    Then response status code for delete car should be "200"
-    And response content type for delete car should be "application/json"
-    
- @scenario-5
-  Scenario:
     Given I query to get car by vin number "/car/{vinNumber}" 
     Then response status code for get car by vin number should be "200"
     And response content type for get car by vin numberr should be "application/json"
     
- @scenario-6
+ @scenario-5
   Scenario:
     Given I query to updated car "/car/{vinNumber}" 
     Then response status code for updated car should be "200"

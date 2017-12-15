@@ -68,13 +68,14 @@ public class CarSteps {
 	}
 	
 
-	@Given("^I query to create car \"([^\"]*)\"$")
+	@Given("^I query to create \"([^\"]*)\"$")
 	public void i_query_to_create(String arg1) throws Throwable {
 		logger.info("Get call for " + URL + arg1);
+
 	}
 	
 	@Before("@scenario-2")
-	public static void setUpScenario2() throws Throwable{
+	public static void setUpScenario2() throws Throwable {
 		Car newCar = new Car("v110","Swift", "Ss", 2011);		
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString(newCar);
@@ -106,26 +107,21 @@ public class CarSteps {
 		assertEquals(arg1, response.getFirstHeader("Content-Type").getValue());
 	}
 	
-	@Given("^I query to create list of cars \"([^\"]*)\"$")
-	public void i_query_to_create_list_of_cars(String arg1) throws Throwable {
+	@Given("^I query to create cars with array \"([^\"]*)\"$")
+	public void i_query_to_create_cars_with_array(String arg1) throws Throwable {
 		logger.info("Get call for " + URL + arg1);
 	}
 	
 	@Before("@scenario-3")
 	public static void setUpScenario3() throws Throwable {
-		List<Car> carsList = new ArrayList<Car>();
-		Car newCar = new Car("v111","Swift1", "Ss1", 2011);		
-		carsList.add(newCar);
-		ObjectMapper mapper = new ObjectMapper();
-		String json = mapper.writeValueAsString(newCar);
-		wireMockServer.start();
+	    wireMockServer.start();
 		WireMock.configureFor("localhost", PORT);
 		WireMock.stubFor(WireMock.get(WireMock.urlEqualTo("/car/createWithArray"))
 				.willReturn(WireMock.aResponse().withStatus(200).withHeader("Content-Type", "application/json")));
 	}
 
 	@Then("^response status code for create cars with array should be \"([^\"]*)\"$")
-	public void response_status_code_for_create_list_of_cars_should_be(String arg1) throws Throwable {
+	public void response_status_code_for_create_cars_with_array_should_be(String arg1) throws Throwable {
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		HttpGet request = new HttpGet(URL + "/car/createWithArray");
 		HttpResponse response = httpClient.execute(request);
@@ -135,7 +131,7 @@ public class CarSteps {
 	}
 
 	@Then("^response content type for create cars with array should be \"([^\"]*)\"$")
-	public void response_content_type_for_create_list_of_cars_should_be(String arg1) throws Throwable {
+	public void response_content_type_for_create_cars_with_array_should_be(String arg1) throws Throwable {
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		HttpGet request = new HttpGet(URL + "/car/createWithArray");
 		HttpResponse response = httpClient.execute(request);
@@ -143,44 +139,14 @@ public class CarSteps {
 		assertEquals(arg1, response.getFirstHeader("Content-Type").getValue());
 	}
 
-	@Given("^I query to delete car \"([^\"]*)\"$")
-	public void i_query_to_delete_car(String arg1) throws Throwable {
-		logger.info("Get call for " + URL + arg1);
-	}
 	
-	@Before("@scenario-4")
-	public static void setUpScenario4() {
-		wireMockServer.start();
-		WireMock.configureFor("localhost", PORT);
-		WireMock.stubFor(WireMock.get(WireMock.urlEqualTo("/car/v101"))
-				.willReturn(WireMock.aResponse().withStatus(200).withHeader("Content-Type", "application/json")));
-	}
-
-	@Then("^response status code for delete car should be \"([^\"]*)\"$")
-	public void response_status_code_for_delete_car_should_be(String arg1) throws Throwable {
-		CloseableHttpClient httpClient = HttpClients.createDefault();
-		HttpDelete request = new HttpDelete(URL + "/car/v101");
-		HttpResponse response = httpClient.execute(request);
-
-		// Status code
-		assertEquals(Integer.parseInt(arg1), response.getStatusLine().getStatusCode());
-	}
-
-	@Then("^response content type for delete car should be \"([^\"]*)\"$")
-	public void response_content_type_for_delete_car_should_be(String arg1) throws Throwable {
-		CloseableHttpClient httpClient = HttpClients.createDefault();
-		HttpDelete request = new HttpDelete(URL + "/car/v101");
-		HttpResponse response = httpClient.execute(request);
-		// Response type
-		assertEquals(arg1, response.getFirstHeader("Content-Type").getValue());
-	}
 
 	@Given("^I query to get car by vin number \"([^\"]*)\"$")
 	public void i_query_to_get_car_by_vin_number(String arg1) throws Throwable {
 		logger.info("Get call for " + URL + arg1);
 	}
 	
-	@Before("@scenario-5")
+	@Before("@scenario-4")
 	public static void setUpScenario5() {
 		wireMockServer.start();
 		WireMock.configureFor("localhost", PORT);
@@ -207,12 +173,12 @@ public class CarSteps {
 		assertEquals(arg1, response.getFirstHeader("Content-Type").getValue());
 	}
 
-	@Given("^I query to update car \"([^\"]*)\"$")
-	public void i_query_to_update_car(String arg1) throws Throwable {
+	@Given("^I query to updated car \"([^\"]*)\"$")
+	public void i_query_to_updated_car(String arg1) throws Throwable {
 		logger.info("Get call for " + URL + arg1);
 	}
 	
-	@Before("@scenario-6")
+	@Before("@scenario-5")
 	public static void setUpScenario6() {
 		wireMockServer.start();
 		WireMock.configureFor("localhost", PORT);
@@ -221,7 +187,7 @@ public class CarSteps {
 	}
 
 	@Then("^response status code for updated car should be \"([^\"]*)\"$")
-	public void response_status_code_for_update_car_should_be(String arg1) throws Throwable {
+	public void response_status_code_for_updated_car_should_be(String arg1) throws Throwable {
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		HttpGet request = new HttpGet(URL + "/car/v101");
 		HttpResponse response = httpClient.execute(request);
@@ -231,7 +197,7 @@ public class CarSteps {
 	}
 
 	@Then("^response content type for updated car should be \"([^\"]*)\"$")
-	public void response_content_type_for_update_car_should_be(String arg1) throws Throwable {
+	public void response_content_type_for_updated_car_should_be(String arg1) throws Throwable {
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		HttpGet request = new HttpGet(URL + "/car/v101");
 		HttpResponse response = httpClient.execute(request);

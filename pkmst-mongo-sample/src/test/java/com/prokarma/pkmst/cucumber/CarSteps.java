@@ -149,39 +149,14 @@ public class CarSteps {
 		logger.info("Get call for " + URL + arg1);
 	}
 	
-	@Before("@scenario-4")
-	public static void setUpScenario4() {
-		wireMockServer.start();
-		WireMock.configureFor("localhost", PORT);
-		WireMock.stubFor(WireMock.get(WireMock.urlEqualTo("/car/v101"))
-				.willReturn(WireMock.aResponse().withStatus(200).withHeader("Content-Type", "application/json")));
-	}
-
-	@Then("^response status code for delete car should be \"([^\"]*)\"$")
-	public void response_status_code_for_delete_car_should_be(String arg1) throws Throwable {
-		CloseableHttpClient httpClient = HttpClients.createDefault();
-		HttpDelete request = new HttpDelete(URL + "/car/v101");
-		HttpResponse response = httpClient.execute(request);
-
-		// Status code
-		assertEquals(Integer.parseInt(arg1), response.getStatusLine().getStatusCode());
-	}
-
-	@Then("^response content type for delete car should be \"([^\"]*)\"$")
-	public void response_content_type_for_delete_car_should_be(String arg1) throws Throwable {
-		CloseableHttpClient httpClient = HttpClients.createDefault();
-		HttpDelete request = new HttpDelete(URL + "/car/v101");
-		HttpResponse response = httpClient.execute(request);
-		// Response type
-		assertEquals(arg1, response.getFirstHeader("Content-Type").getValue());
-	}
+	
 
 	@Given("^I query to get car by vin number \"([^\"]*)\"$")
 	public void i_query_to_get_car_by_vin_number(String arg1) throws Throwable {
 		logger.info("Get call for " + URL + arg1);
 	}
 	
-	@Before("@scenario-5")
+	@Before("@scenario-4")
 	public static void setUpScenario5() {
 		wireMockServer.start();
 		WireMock.configureFor("localhost", PORT);
@@ -213,7 +188,7 @@ public class CarSteps {
 		logger.info("Get call for " + URL + arg1);
 	}
 	
-	@Before("@scenario-6")
+	@Before("@scenario-5")
 	public static void setUpScenario6() {
 		wireMockServer.start();
 		WireMock.configureFor("localhost", PORT);
