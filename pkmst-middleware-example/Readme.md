@@ -9,9 +9,7 @@ related configuration for eureka, zipkin, spring boot admin one has two options:
 swagger: "2.0"
 info:
   description: "This is a sample Product Catalogue Server.\
-    \  For this sample, you can use the api key `special-key` to test the authorization\
-    \ filters."
-  version: "1.0.0"
+   version: "1.0.0"
   x-codegen:
     eurekaUri: "http://localhost:8080"
     zipkinUri: "http://localhost:9411"
