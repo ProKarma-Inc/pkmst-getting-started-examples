@@ -1,4 +1,4 @@
-This is the sample Spring boot microservice template project generated from swagger codegen, where you can Create , Remove , Update and Delete details of a student .Using swagger specification you can convert any definition to spring boot microservice
+This is a crud sample project generated from PKMST swagger codegen, where you can Create , Remove , Update and Delete details of a student .Using swagger specification you can convert any definition to spring boot microservice
 
 ## Prerequisites
 
