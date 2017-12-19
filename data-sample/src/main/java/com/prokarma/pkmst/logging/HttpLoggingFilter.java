@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -80,7 +81,11 @@ public class HttpLoggingFilter implements Filter {
                 .append(bufferedResponse.getStatus())
                 .append("] [Response Time(ms):").append(elapsedTime)
                 .append("]");
-        log.info(logMessage.toString());
+        String [] nonLoggingPaths = {"/v2/api-docs","/swagger-resources","/configuration/security","/swagger-ui.html","/webjars"};
+        String urlPath = httpServletRequest.getRequestURL().toString();
+        if (! ( Arrays.stream(nonLoggingPaths).parallel().anyMatch(urlPath::contains) )){
+             log.info(logMessage.toString());
+        } 
     } catch (Throwable a) {
         log.error(a.getMessage());
         a.printStackTrace();
