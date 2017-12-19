@@ -14,18 +14,18 @@ and editor is available at : https://editor.swagger.io/
 
 ## Steps to run the app
 
-1.Clone this repository
-https://github.com/ProKarma-Inc/pkmst-getting-started-examples.git
+  1.Clone this repository
+  https://github.com/ProKarma-Inc/pkmst-getting-started-examples.git
 
   Now from your environment run the application with the following commands
 
-  $ cd <app-name> 
+  $ cd app-name
+  
   e.g.crud-sample
 
   $ mvn clean install
-
   $ mvn spring-boot:run
-
+  
 2. Project will run on http://localhost:8008  
 
 3. Swagger ui available on:
