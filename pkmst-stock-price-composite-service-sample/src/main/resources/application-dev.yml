@@ -1,6 +1,6 @@
 # Discovery Server Access
 server:
-  port: 9008
+  port: 8008
 
 # Spring Actuator
 management:
@@ -46,4 +46,6 @@ logging:
       springframework:
         cloud:
           sleuth: DEBUG
-          
+resourceEndPoints:
+   stockServiceEndPoint:  
+   forexServiceEndPoint:           

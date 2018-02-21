@@ -1,6 +1,6 @@
 # Discovery Server Access
 server:
-  port: 8008
+  port: 9009
 
 # Spring Actuator
 management:
