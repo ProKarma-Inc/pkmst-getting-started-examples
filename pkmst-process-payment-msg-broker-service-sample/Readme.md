@@ -7,9 +7,9 @@ Generate Server : java-pkmst
 
 This service works in conjunction with 2 other services. The 3 services that work together are :
 
-#pkmst-order-mgmt-msg-broker-service-sample
-#pkmst-process-payment-msg-broker-service-sample
-#pkmst-process-workorder-msg-broker-service-sample
+- pkmst-order-mgmt-msg-broker-service-sample
+- pkmst-process-payment-msg-broker-service-sample
+- pkmst-process-workorder-msg-broker-service-sample
 
 
 These service demonstrate aggregation of services using messaging pattern. The aggregator (pkmst-order-mgmt-msg-broker-service-sample) receives a request to place an order. It then sends messages to the other 2 services, one that processes payment of order, the other processes initiation of work-order for manufacturing of the product. Both the services perform their respective tasks and send back response messages to the service that is performing aggregation.
