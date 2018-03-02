@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: mstfj-jwt
+  profiles:
+    active: test    

@@ -1,0 +1,14 @@
+applications:
+- name: mstfj-jwt
+  memory: 1G
+  instances: 1
+  host: mstfj-jwt
+  buildpack: https://github.com/cloudfoundry/java-buildpack.git
+  path: target/mstfj-jwt.jar
+  services:
+  - prk-elk
+  - pkmst-rabbitmq
+  env:
+    SPRING_ADMIN_PROKARMA_EI_PIVOTAL_URL: pkmst-spring-admin.apps.prokarma.com
+    REGISTRY_SERVER_PROKARMA_EI_PIVOTAL_URL: pkmst-registry.apps.prokarma.com
+    ZIPKIN_SERVER_PROKARMA_EI_PIVOTAL_URL: pkmst-zipkin.apps.prokarma.com
