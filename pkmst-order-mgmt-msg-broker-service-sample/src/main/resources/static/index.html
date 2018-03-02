@@ -1,0 +1,54 @@
+<html>
+<head>
+    <title>My Awesome Assync Service Aggregation Demo</title>
+    <!-- 
+    <script src="/webjars/jquery/jquery.min.js"></script>
+     -->
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+    <script src="/app.js"></script>
+    
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">    
+</head>
+<body>
+<form>
+<div class="container">
+	<div class="alert alert-success alert-dismissible" id="received-confirmation"></div>
+	<div class="alert alert-info alert-dismissible" id="sent-confirmation">
+	  <strong>Info!</strong> Your Order was submitted and still being processed.
+	</div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th colspan="2" align="left">Order Details: </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Customer ID</td>
+        <td><input class="form-control" type="number" id="customer-id"></td>
+      </tr>
+      <tr>
+        <td>Payment Account ID</td>
+        <td><input class="form-control" type="number" id="payment-account-id"></td>
+      </tr>
+      <tr>
+        <td>Payment Amount</td>
+        <td><input class="form-control" type="number" id="payment-amount"></td>
+      </tr>
+      <tr>
+        <td>Product ID</td>
+        <td><input class="form-control" type="number" id="product-id"></td>
+      </tr>
+      <tr>
+        <td>Quantity</td>
+        <td><input class="form-control" type="number" id="quantity"></td>
+      </tr> 
+      <tr><td colspan="2"><button class="btn btn-primary btn-md" type="submit">Submit</button></td></tr>
+    </tbody>
+  </table>
+</div>
+</form>
+</body>
+</html>
