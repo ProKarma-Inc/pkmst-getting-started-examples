@@ -1,0 +1,89 @@
+# Discovery Server Access
+eureka:
+    instance:
+      leaseRenewalIntervalInSeconds: 1
+      leaseExpirationDurationInSeconds: 2
+      hostname: ${vcap.application.uris[0]}
+      instanceId: ${vcap.application.uris[0]}
+      healthCheckUrl: http://${vcap.application.uris[0]}/health
+      nonSecurePort: 80
+    client:
+        enabled: true
+        healthcheck:
+            enabled: true
+        registerWithEureka: true
+        #fetchRegistry: true
+        serviceUrl:
+            defaultZone: http://${REGISTRY_SERVER_PROKARMA_EI_PIVOTAL_URL}/eureka/
+
+server:
+    port: ${server-port}
+pkmst:
+    swagger:
+        title: Pkmst API
+        description: Pkmst API documentation
+        version: 0.0.1
+        termsOfServiceUrl:
+        contactName: "Prokarma"
+        contactUrl:
+        contactEmail:
+        license:
+        licenseUrl:
+        
+# Spring Actuator
+management:
+    health:
+        redis: 
+            enabled: false
+    security:
+        enabled: false
+            
+
+endpoints:
+   health:
+      sensitive: false       
+            
+info:
+    app:
+      name: Product Microservice
+      description: Microservice developed by PKMST
+      version: 1.0.0-SNAPSHOT                    
+
+health:
+  hystrix:
+    enabled: true
+    
+security:
+   basic:
+     enabled: false
+# provide rabbitmq configuration
+spring:
+  rabbitmq:
+    #host: ${vcap.services.p-rabbitmq.credentials.protocols.amqp.host}
+    #virtual-host: ${vcap.services.p-rabbitmq.credentials.protocols.amqp.vhost} 
+    #username: ${vcap.services.p-rabbitmq.credentials.protocols.amqp.username}
+    #password: ${vcap.services.p-rabbitmq.credentials.protocols.amqp.password}
+    #port: ${vcap.services.p-rabbitmq.credentials.protocols.amqp.port:5672}
+    uri: ${vcap.services.p-rabbitmq.credentials.protocols.amqp.uris[0]}
+
+  zipkin:
+    base-url: http://${ZIPKIN_SERVER_PROKARMA_EI_PIVOTAL_URL}
+
+
+  #Enable spring boot admin. Enable the dependency also.
+  boot:
+    admin:
+      url: http://${SPRING_ADMIN_PROKARMA_EI_PIVOTAL_URL}
+      client:
+        health-url: http://${vcap.application.uris[0]}/health
+        management-url: http://${vcap.application.uris[0]}
+        service-url: http://${vcap.application.uris[0]}
+  sleuth:
+    sampler:
+       percentage: 1.0		  
+logging:
+   level:
+      org:
+         springframework:
+            cloud:
+               sleuth: INFO

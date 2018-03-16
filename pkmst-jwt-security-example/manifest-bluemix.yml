@@ -1,0 +1,14 @@
+applications:
+- name: pkmst-demo-example
+  memory: 1G
+  instances: 1
+  host: pkmst-demo-example
+  buildpack: https://github.com/cloudfoundry/java-buildpack.git
+  path: target/pkmst-demo-example.jar
+  services:
+  - pkmst-elk
+  - pkmst-rabbitmq
+  env:
+    SPRING_ADMIN_PROKARMA_EI_PIVOTAL_URL: pkmst-spring-admin.mybluemix.net
+    REGISTRY_SERVER_PROKARMA_EI_PIVOTAL_URL: pkmst-registry.mybluemix.net
+    ZIPKIN_SERVER_PROKARMA_EI_PIVOTAL_URL: pkmst-zipkin.mybluemix.net

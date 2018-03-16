@@ -1,0 +1,6 @@
+{
+    "id": 5,
+    "name": "BLACKBERRY",
+    "category": "C",
+    "cost": 50000
+}

@@ -1,0 +1,13 @@
+applications:
+- name: pkmst-demo-example
+  memory: 256M
+  instances: 1
+  host: pkmst-demo-example
+  buildpack: https://github.com/cloudfoundry/java-buildpack.git
+  path: target/pkmst-demo-example.jar
+  services:
+  - cf-spring-db
+  env:
+    SPRING_ADMIN_PROKARMA_EI_PIVOTAL_URL: pkmst-spring-admin.apps.prokarma.com
+    REGISTRY_SERVER_PROKARMA_EI_PIVOTAL_URL: pkmst-registry.apps.prokarma.com
+    ZIPKIN_SERVER_PROKARMA_EI_PIVOTAL_URL: pkmst-zipkin.apps.prokarma.com

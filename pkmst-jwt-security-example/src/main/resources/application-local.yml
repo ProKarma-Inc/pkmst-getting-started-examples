@@ -1,0 +1,87 @@
+# Discovery Server Access
+eureka:
+    instance:
+      leaseRenewalIntervalInSeconds: 1
+      leaseExpirationDurationInSeconds: 2
+      hostname: localhost
+      healthCheckUrl: http://localhost:8081/health
+      nonSecurePort: 80
+    client:
+        enabled: true
+        healthcheck:
+            enabled: true
+        registerWithEureka: true
+        #fetchRegistry: true
+        serviceUrl:
+            defaultZone: http://localhost:8761/eureka/
+
+server:
+    port: 8081
+pkmst:
+    swagger:
+        title: Pkmst API
+        description: Pkmst API documentation
+        version: 0.0.1
+        termsOfServiceUrl:
+        contactName: "Prokarma"
+        contactUrl:
+        contactEmail:
+        license:
+        licenseUrl:
+        
+# Spring Actuator
+management:
+    health:
+        redis: 
+            enabled: false
+    security:
+        enabled: false
+            
+
+endpoints:
+   health:
+      sensitive: false       
+            
+info:
+    app:
+      name: Product Microservice
+      description: Microservice developed by PKMST
+      version: 1.0.0-SNAPSHOT                    
+
+health:
+  hystrix:
+    enabled: true
+    
+security:
+   basic:
+     enabled: false
+# provide rabbitmq configuration
+spring:
+  rabbitmq:
+    host: 
+    virtual-host: 
+    username: 
+    password: 
+    port: 
+
+  zipkin:
+    base-url: http://localhost:9411
+
+
+  #Enable spring boot admin. Enable the dependency also.
+  boot:
+    admin:
+      url: http://localhost:8080
+      client:
+        health-url: http://localhost:8081/health
+        management-url: http://localhost:8081
+        service-url: http://localhost:8081
+  sleuth:
+    sampler:
+       percentage: 1.0		  
+logging:
+   level:
+      org:
+         springframework:
+            cloud:
+               sleuth: DEBUG
