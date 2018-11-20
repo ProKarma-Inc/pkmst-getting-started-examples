@@ -31,4 +31,4 @@ https://github.com/ProKarma-Inc/pkmst-getting-started-examples.git
 3. Swagger ui available on:
 http://localhost:9008/swagger-ui.html
 
-Try out with some example stock tickers like : UNP, MSFT, AMZN, NFLX, INFY
+Try out with some example stock tickers like : UNP, MSFT, AMZN, NFLX, INFY, AAPL
